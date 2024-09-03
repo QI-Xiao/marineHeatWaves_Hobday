@@ -204,6 +204,8 @@ def detect(t, temp, climatologyPeriod=[None,None], pctile=90, windowHalfWidth=5,
         doy_leapYear[tt] = t_leapYear[tt] - date(date.fromordinal(t_leapYear[tt]).year,1,1).toordinal() + 1
     # Calculate day-of-year values
     for tt in range(T):
+        if tt == 58:
+            print(tt)
         doy[tt] = doy_leapYear[(month_leapYear == month[tt]) * (day_leapYear == day[tt])]
 
     # Constants (doy values for Feb-28 and Feb-29) for handling leap-years
@@ -257,11 +259,11 @@ def detect(t, temp, climatologyPeriod=[None,None], pctile=90, windowHalfWidth=5,
     clim_start = np.where(yearClim == climatologyPeriod[0])[0][0]
     clim_end = np.where(yearClim == climatologyPeriod[1])[0][-1]
     # Inialize arrays
-    thresh_climYear = np.NaN*np.zeros(lenClimYear)
-    seas_climYear = np.NaN*np.zeros(lenClimYear)
+    thresh_climYear = np.nan*np.zeros(lenClimYear)
+    seas_climYear = np.nan*np.zeros(lenClimYear)
     clim = {}
-    clim['thresh'] = np.NaN*np.zeros(TClim)
-    clim['seas'] = np.NaN*np.zeros(TClim)
+    clim['thresh'] = np.nan*np.zeros(TClim)
+    clim['seas'] = np.nan*np.zeros(TClim)
     # Loop over all day-of-year values, and calculate threshold and seasonal climatology across years
     for d in range(1,lenClimYear+1):
         # Special case for Feb 29

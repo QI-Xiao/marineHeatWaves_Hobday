@@ -26,3 +26,20 @@ plt.legend()
 plt.show()
 
 mhws, clim = mhw.detect(t, sst)
+
+
+plt.figure(figsize=(14,10))
+plt.subplot(2,1,1)
+# Plot SST, seasonal cycle, and threshold
+plt.plot(dates, sst, 'k-')
+plt.plot(dates, clim['thresh'], 'g-')
+plt.plot(dates, clim['seas'], 'b-')
+plt.title('SST (black), seasonal climatology (blue), \
+          threshold (green), detected MHW events (shading)')
+plt.xlim(dates[0], dates[-1])
+plt.ylim(sst.min()-0.5, sst.max()+0.5)
+plt.ylabel(r'SST [$^\circ$C]')
+
+plt.show()
+
+
