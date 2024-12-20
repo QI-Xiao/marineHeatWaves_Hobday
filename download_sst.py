@@ -1,3 +1,8 @@
+# Reference
+# https://github.com/ioos/erddapy?tab=readme-ov-file#example
+# https://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOisst21Agg_LonPM180.html
+# https://coastwatch.pfeg.noaa.gov/erddap/griddap/index.html?page=3&itemsPerPage=1000
+
 import pandas as pd
 from erddapy import ERDDAP
 

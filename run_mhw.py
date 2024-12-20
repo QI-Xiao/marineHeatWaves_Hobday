@@ -1,6 +1,7 @@
 import numpy as np
 from datetime import date
 from matplotlib import pyplot as plt
+import pandas as pd
 import marineHeatWaves as mhw
 
 
@@ -24,6 +25,30 @@ plt.title('Synthetic Sea Surface Temperature Time Series')
 plt.grid(True)
 plt.legend()
 plt.show()
+
+
+def generate_random_sst():
+    start_date = "2025-01-10"
+    end_date = "2025-03-31"
+    sst_min = 20.0
+    sst_max = 30.0
+
+    date_range = pd.date_range(start=start_date, end=end_date, freq="D")
+    sst_values = np.random.uniform(sst_min, sst_max, len(date_range))
+
+    df = pd.DataFrame({
+        "Date": date_range,
+        "SST": sst_values
+    })
+    return df
+
+sst_to_predict = generate_random_sst()
+
+t_predict = pd.Series(sst_to_predict.Date).apply(lambda x: x.toordinal())
+sst_predict = sst_to_predict.SST
+
+# mhws, clim = mhw.detect(t_predict, sst_predict, climatologyPeriod=[2025, 2025], alternateClimatology=[t, sst])
+
 
 mhws, clim = mhw.detect(t, sst)
 
