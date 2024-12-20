@@ -2,3 +2,5 @@
 .idea/
 marineHeatWaves.egg-info/
 *.csv
+*checkpoint.ipynb
+*.gif
