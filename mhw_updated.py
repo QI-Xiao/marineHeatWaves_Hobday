@@ -9,7 +9,7 @@ class MarineHeatWaveCalculator:
         self.temp = temp
 
         self.params = {
-            'climatologyPeriod': climatologyPeriod,
+            'climatologyPeriod': [climatologyPeriod[0], climatologyPeriod[1]],
             'pctile': pctile,
             'windowHalfWidth': windowHalfWidth,
             'smoothPercentile': smoothPercentile,
@@ -42,9 +42,11 @@ class MarineHeatWaveCalculator:
         return t
         
     def calculate_mhw(self):
-        print(f'time start: {date.fromordinal(self.t[0])}, time end: {date.fromordinal(self.t[-1])}')
-        print(self.params, '\n')
+        print(f'Time start: {date.fromordinal(self.t[0])}, time end: {date.fromordinal(self.t[-1])}')
+        print(f'All params: {self.params} \n')
         mhw_result, clim = detect(self.t, self.temp, **self.params)
+
+        print(f"The number of mhw event is {mhw_result['n_events']}")
         return mhw_result, clim
     
     def update_params(self, new_params_dic):

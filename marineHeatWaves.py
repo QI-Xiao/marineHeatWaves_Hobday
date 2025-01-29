@@ -204,8 +204,8 @@ def detect(t, temp, climatologyPeriod=[None,None], pctile=90, windowHalfWidth=5,
         doy_leapYear[tt] = t_leapYear[tt] - date(date.fromordinal(t_leapYear[tt]).year,1,1).toordinal() + 1
     # Calculate day-of-year values
     for tt in range(T):
-        if tt == 58:
-            print(tt)
+        # if tt == 58:
+        #     print(tt)
         doy[tt] = doy_leapYear[(month_leapYear == month[tt]) * (day_leapYear == day[tt])]
 
     # Constants (doy values for Feb-28 and Feb-29) for handling leap-years
